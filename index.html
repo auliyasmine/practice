@@ -2,8 +2,12 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UTS Pemrograman Web</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Poppins', sans-serif;
       background: #ffe4ec;
@@ -13,8 +17,8 @@
     header, footer {
       background: #ff69b4;
       color: white;
-      padding: 1rem;
       text-align: center;
+      padding: 1rem;
     }
     nav ul {
       list-style: none;
@@ -22,6 +26,7 @@
       justify-content: center;
       background: #ffb6c1;
       padding: 0.5rem;
+      margin: 0;
     }
     nav ul li {
       margin: 0 15px;
@@ -29,9 +34,15 @@
     nav ul li a {
       color: white;
       text-decoration: none;
+      cursor: pointer;
     }
     section {
       padding: 2rem;
+      display: none; /* Semua section disembunyikan awalnya */
+    }
+    section.active {
+      display: block; /* Yang aktif tampil */
+      animation: fadeIn 0.5s ease;
     }
     table, th, td {
       border: 1px solid black;
@@ -49,7 +60,19 @@
       border: 1px solid #333;
       margin-top: 2rem;
     }
+    aside {
+      background: #ffeef5;
+      padding: 1.5rem;
+      margin: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -59,15 +82,141 @@
 
   <nav>
     <ul>
-      <li><a href="#profil">Profil</a></li>
-      <li><a href="#tugas">Tugas</a></li>
-      <li><a href="#kontak">Kontak</a></li>
+      <li><a onclick="showSection('profil')">Profil</a></li>
+      <li><a onclick="showSection('tugas')">Tugas</a></li>
+      <li><a onclick="showSection('kontak')">Kontak</a></li>
     </ul>
   </nav>
 
-  <section id="profil">
+  <section id="profil" class="active">
     <article>
       <h2>Profil Mahasiswa</h2>
       <p><strong>Nama:</strong> Aulia Yasmin</p>
       <p><strong>NIM:</strong> 202332081</p>
-      <p><strong>Mata Kuliah:</strong> Pemrograman
+      <p><strong>Mata Kuliah:</strong> Pemrograman Web</p>
+
+      <figure>
+        <img src="https://source.unsplash.com/300x200/?student" alt="Mahasiswa" width="300">
+        <figcaption>Gambar Mahasiswa</figcaption>
+      </figure>
+
+      <p>Kunjungi <a href="http://www.itpln.ac.id" target="_blank">Website ITPLN</a></p>
+    </article>
+  </section>
+
+  <section id="tugas">
+    <article>
+      <h2>Data Tugas</h2>
+
+      <h3>Tabel Mata Kuliah</h3>
+      <table>
+        <tr>
+          <th>No</th>
+          <th>Mata Kuliah</th>
+          <th>Dosen</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Pemrograman Web</td>
+          <td>Pak Ali</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Database</td>
+          <td>Bu Lina</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Jaringan Komputer</td>
+          <td>Pak Budi</td>
+        </tr>
+      </table>
+
+      <h3>List Aktivitas</h3>
+      <h4>Ordered List:</h4>
+      <ol>
+        <li>Membaca Materi</li>
+        <li>Latihan Koding</li>
+        <li>Mengerjakan Tugas</li>
+      </ol>
+
+      <h4>Unordered List:</h4>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+      </ul>
+
+      <h3>Canvas</h3>
+      <canvas id="myCanvas" width="200" height="100"></canvas>
+
+      <h3>SVG</h3>
+      <svg width="200" height="100">
+        <circle cx="50" cy="50" r="40" stroke="pink" stroke-width="4" fill="lightpink" />
+      </svg>
+    </article>
+
+    <aside>
+      <h2>Multimedia</h2>
+
+      <h4>Audio:</h4>
+      <audio controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung audio.
+      </audio>
+
+      <h4>Video:</h4>
+      <video width="320" height="240" controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video.
+      </video>
+    </aside>
+
+  </section>
+
+  <section id="kontak">
+    <h2>Form Kontak</h2>
+    <form>
+      <label>Nama:<br>
+        <input type="text" name="nama" required>
+      </label><br><br>
+
+      <label>Email:<br>
+        <input type="email" name="email" required>
+      </label><br><br>
+
+      <label>Nomor HP:<br>
+        <input type="tel" name="hp" pattern="[0-9]{10,13}" required title="Masukkan 10-13 digit angka.">
+      </label><br><br>
+
+      <label>Pesan:<br>
+        <textarea name="pesan" rows="4" required></textarea>
+      </label><br><br>
+
+      <button type="submit">Kirim</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Aulia Yasmin - 202332081</p>
+  </footer>
+
+  <script>
+    // Show section based on clicked menu
+    function showSection(id) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+
+    // Simple canvas drawing
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ff69b4';
+    ctx.fillRect(10, 10, 150, 75);
+  </script>
+
+</body>
+</html>
